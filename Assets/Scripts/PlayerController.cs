@@ -34,7 +34,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] UImanager UImanager;
 
     [SerializeField] public float currentHealth;
+
     
+
 
     //
 
@@ -128,81 +130,52 @@ public class PlayerController : MonoBehaviour
     void PlayerMovement()
     {
         
-        if (Input.GetKey(KeyCode.A))
-        {
-            
+        if (Input.GetKey(KeyCode.A)){
             isMoving = true;
             playerAnim.SetBool("isWalking",true);
             playerDirection.eulerAngles = new Vector3(0, 0, 90);
-
         }
-        if (Input.GetKey(KeyCode.D))
-        {
-            
+        if (Input.GetKey(KeyCode.D)){
             isMoving = true;
             playerAnim.SetBool("isWalking", true);
             playerDirection.eulerAngles = new Vector3(0, 0, -90);
-
         }
-        if (Input.GetKey(KeyCode.W))
-        {
-            
+        if (Input.GetKey(KeyCode.W)){
             isMoving = true;
             playerAnim.SetBool("isWalking", true);
             playerDirection.eulerAngles = new Vector3(0, 0, 0);
-
         }
-        if (Input.GetKey(KeyCode.S))
-        {
-           
+        if (Input.GetKey(KeyCode.S)){
             isMoving = true;
             playerAnim.SetBool("isWalking", true);
             playerDirection.eulerAngles = new Vector3(0, 0, 180);
-
         }
 
 
-        if (Input.GetKeyUp(KeyCode.A))
-        {
-            isMoving = false;
-            playerAnim.SetBool("isWalking", false);
-        }
-        if (Input.GetKeyUp(KeyCode.D))
-        {
-            isMoving = false;
-            playerAnim.SetBool("isWalking", false);
-        }
-        if (Input.GetKeyUp(KeyCode.W))
-        {
-            isMoving = false;
-            playerAnim.SetBool("isWalking", false);
-        }
-        if (Input.GetKeyUp(KeyCode.S))
-        {
+        if (Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S)){
             isMoving = false;
             playerAnim.SetBool("isWalking", false);
         }
 
-
-        if (!isMoving)
-        {
+        if (!isMoving){
             rb.velocity = Vector2.zero;
         }
 
 
+
     }
+
+
 
     public void PauseUnpauseGame()
     {
-        if (!isPaused)
-        {
+        if (!isPaused){
             pausePanel.SetActive(true);
             Time.timeScale = 0 ;
             isPaused = true;
             return;
         }
-        else
-        {
+        else{
             pausePanel.SetActive(false);
             Time.timeScale = 1;
             isPaused = false;
@@ -215,8 +188,7 @@ public class PlayerController : MonoBehaviour
     }
     void GameOver()
     {
-        if (currentHealth == 0 && !isGameConcluded)
-        {
+        if (currentHealth == 0 && !isGameConcluded){
             failPanel.SetActive(true);
             Time.timeScale = 0;
             isGameConcluded = true;
